@@ -1,5 +1,9 @@
 import maya.cmds as cmds
- 
+'''Mercedes James 
+This code will create a autorig for the body'''
+
+
+'''drive chain creation''' 
 #create joints (body chain) 
 cmds.joint(p=(-0.063,102.695,0),n=('root_jnt'))
 cmds.joint(p=(-0.188,111.843,0),n=('stomach_jnt'))
@@ -97,6 +101,23 @@ cmds.parent('R_collarBone_jnt','chest_jnt', r=False)
 #parent collarbone to chest
 cmds.parent('L_hip_jnt','root_jnt', r=False)
 cmds.parent('R_hip_jnt','root_jnt', r=False)
+
+
+'''create ik and fk chains'''
+#fk chain creation
+cmds.duplicate('root_jnt')
+cmds.select('root_jnt1')
+
+########Add FK prefix
+
+#IK chain creation
+cmds.duplicate('root_jnt')
+#delete hands********************************************
+cmds.delete('L_palm_jnt2','R_palm_jnt2')
+cmds.select('root_jnt2')
+
+
+
 
 
 
