@@ -77,11 +77,26 @@ cmds.select(clear=True)
 cmds.joint('L_hip_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
 cmds.joint('root_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
 cmds.joint('L_collarBone_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
+#orient last joints to world
+#************************************************************
+
 
 #mirror leg chain
 cmds.mirrorJoint('L_hip_jnt',mirrorYZ=True,mirrorBehavior=True,searchReplace=('L_', 'R_') )
 
 #mirror Arm chain
 cmds.mirrorJoint('L_collarBone_jnt',mirrorYZ=True,mirrorBehavior=True,searchReplace=('L_', 'R_') )
+
+
+#parent collarbone to chest
+cmds.parent('L_collarBone_jnt','chest_jnt', r=False)
+cmds.parent('R_collarBone_jnt','chest_jnt', r=False)
+
+#parent hips to root
+
+#parent collarbone to chest
+cmds.parent('L_hip_jnt','root_jnt', r=False)
+cmds.parent('R_hip_jnt','root_jnt', r=False)
+
 
 
