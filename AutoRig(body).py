@@ -11,10 +11,10 @@ cmds.joint(p=(0.188,161.969,0),n=('head_jnt'))
 cmds.select(clear=True)
 
 #create joints (arm chain)
-cmds.joint(p=(6.203,138.535,0),n=('collarBone_jnt'))
-cmds.joint(p=(12.93,137.929,0),n=('shoulder_jnt'))
-cmds.joint(p=(12.437,-19.609,-1.657),n=('elbow_jnt'), r=True) 
-cmds.joint(p=(12.408,-14.055,8.077),n=('wrist_jnt'),r=True)
+cmds.joint(p=(6.203,138.535,0),n=('L_collarBone_jnt'))
+cmds.joint(p=(12.93,137.929,0),n=('L_shoulder_jnt'))
+cmds.joint(p=(12.437,-19.609,-1.657),n=('L_elbow_jnt'), r=True) 
+cmds.joint(p=(12.408,-14.055,8.077),n=('L_wrist_jnt'),r=True)
 
 #create joints (hand)
 cmds.joint(p=(4.238,-4.376,4.094),n=('L_palm_jnt'),r=True)
@@ -64,19 +64,24 @@ cmds.parent('L_Pinky1_jnt','L_palm_jnt', r=True)
 cmds.select(clear=True)
 
 #create joints (leg chain)
-cmds.joint(p=(8.068,97.25,0),n=('hip_jnt'))
-cmds.joint(p=(4.206,-39.767,4.584),n=('knee_jnt'),r=True)
-cmds.joint(p=(3.906,-43.079,-5.7),n=('ankle_jnt'),r=True)
-cmds.joint(p=(0.403,-10.532,8.135),n=('ballOfFoot_jnt'),r=True)
-cmds.joint(p=(-0.121,-2.019,4.19),n=('toe_jnt'),r=True)
+cmds.joint(p=(8.068,97.25,0),n=('L_hip_jnt'))
+cmds.joint(p=(4.206,-39.767,4.584),n=('L_knee_jnt'),r=True)
+cmds.joint(p=(3.906,-43.079,-5.7),n=('L_ankle_jnt'),r=True)
+cmds.joint(p=(0.403,-10.532,8.135),n=('L_ballOfFoot_jnt'),r=True)
+cmds.joint(p=(-0.121,-2.019,4.19),n=('L_toe_jnt'),r=True)
 
 #deselect
 cmds.select(clear=True)
 
 #orient joints
-cmds.joint('hip_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
+cmds.joint('L_hip_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
 cmds.joint('root_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
-cmds.joint('collarBone_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
+cmds.joint('L_collarBone_jnt',edit=True,orientJoint='xyz',secondaryAxisOrient='zdown',ch=True)
 
+#mirror leg chain
+cmds.mirrorJoint('L_hip_jnt',mirrorYZ=True,mirrorBehavior=True,searchReplace=('L_', 'R_') )
+
+#mirror Arm chain
+cmds.mirrorJoint('L_collarBone_jnt',mirrorYZ=True,mirrorBehavior=True,searchReplace=('L_', 'R_') )
 
 
